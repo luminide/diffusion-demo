@@ -15,10 +15,10 @@ logging.basicConfig(
 )
 
 logger = logging.getLogger(__name__)
-urls = ["https://raw.githubusercontent.com/luminide/diffusion-demo/main/assets/sketch01.png"]
-
-for idx, url in enumerate(urls):
-    urllib.request.urlretrieve(url, f"resources/sketch{idx}.jpg")
+num_imgs = 8
+base_url = "https://raw.githubusercontent.com/luminide/diffusion-demo/main/assets"
+for i in range(num_imgs):
+    urllib.request.urlretrieve(f"{base_url}/sketch{i}.png", f"resources/sketch{i}.png")
 
 
 class ModelDemo(ServeGradio):
@@ -32,8 +32,7 @@ class ModelDemo(ServeGradio):
     outputs = [
         gr.outputs.Image(label="generated image"),
     ]
-    examples = glob("resources/*.png")
-    print(examples)
+    examples = [f"resources/sketch{i}.png" for i in range(num_imgs)]
     enable_queue = True
 
     def __init__(self):
@@ -46,5 +45,4 @@ class ModelDemo(ServeGradio):
         return model
 
     def predict(self, image: Image.Image) -> Image.Image:
-        result = self.model.predict(image)
-        return result
+        return self.model.predict(image)

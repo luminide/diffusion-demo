@@ -25,7 +25,7 @@ class Demo:
 
     def predict(
             self, init_image,
-            num_inference_steps=2, strength=0.8, guidance_scale=7.5, eta=0.0):
+            num_inference_steps=50, strength=0.8, guidance_scale=7.5, eta=0.0):
         init_image = np.array(init_image)
         # convert from RGB to BGR
         init_image = init_image[:, :, ::-1]
