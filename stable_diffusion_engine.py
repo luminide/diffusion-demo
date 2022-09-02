@@ -10,7 +10,6 @@ from transformers import CLIPTokenizer
 from tqdm import tqdm
 from huggingface_hub import hf_hub_download
 from diffusers import LMSDiscreteScheduler, PNDMScheduler
-import cv2
 
 
 def result(var):
@@ -76,14 +75,9 @@ class StableDiffusionEngine:
         return mask
 
     def _preprocess_image(self, image):
-        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = image[:, :, ::-1]
         h, w = image.shape[1:]
-        if h != self.init_image_shape[0] and w != self.init_image_shape[1]:
-            image = cv2.resize(
-                image,
-                (self.init_image_shape[1], self.init_image_shape[0]),
-                interpolation=cv2.INTER_LANCZOS4
-            )
+        assert h == self.init_image_shape[0] and w == self.init_image_shape[1]
         # normalize
         image = image.astype(np.float32) / 255.0
         image = 2.0 * image - 1.0

@@ -1,0 +1,8 @@
+__pycache__
+resources
+assets
+flagged
+.git
+*.db
+*/__pycache__
+

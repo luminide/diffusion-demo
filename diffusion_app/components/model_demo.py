@@ -1,3 +1,4 @@
+import os
 import logging
 import urllib
 from glob import glob
@@ -17,6 +18,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 num_imgs = 8
 base_url = "https://raw.githubusercontent.com/luminide/diffusion-demo/main/assets"
+os.makedirs("resources", exist_ok=True)
 for i in range(num_imgs):
     urllib.request.urlretrieve(f"{base_url}/sketch{i}.png", f"resources/sketch{i}.png")
 
