@@ -17,9 +17,8 @@ lightning run app app.py
 
 3. Transform images
 
-```
 On the Web UI, pick an example image and click on "Submit". The input image can be edited by clicking on the pencil icon.
-```
+
 
 ![](assets/usage.png)
 
