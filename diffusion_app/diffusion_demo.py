@@ -24,17 +24,16 @@ class Demo:
         print("Model loaded.")
 
     def predict(
-            self, init_image,
-            num_inference_steps=50, strength=0.8, guidance_scale=7.5, eta=0.0):
+            self, init_image, prompt, strength, steps,
+            guidance_scale=7.5, eta=0.0):
         init_image = np.array(init_image)
         # convert from RGB to BGR
         init_image = init_image[:, :, ::-1]
         # run 
-        prompt = "cinematic bladerunner cityscape at night, trending on artstation, featured on pixiv, 8k, matte painting, hyper detailed, unreal engine 5, epic lighting, in sharp focus, vivid colors, high contrast, photorealism"
         print(f"Generating image from prompt: \n{prompt}")
         image = self.stable_diffusion(
             prompt=prompt, init_image=init_image,
-            num_inference_steps=num_inference_steps,
+            num_inference_steps=int(steps),
             strength=strength, guidance_scale=guidance_scale, eta=eta
         )
 
@@ -45,7 +44,7 @@ class Demo:
 
 if __name__ == "__main__":
 
-    img_url = "https://raw.githubusercontent.com/luminide/diffusion-demo/main/assets/sketch01.png"
+    img_url = "https://raw.githubusercontent.com/luminide/diffusion-demo/main/assets/sketch0.png"
     img = Image.open(requests.get(img_url, stream=True).raw)
     model = Demo()
     result = model.predict(img)
