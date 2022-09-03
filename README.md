@@ -1,6 +1,8 @@
 # Stable Diffusion
 This app is a demo of the img2img feature in [Stable Diffusion](https://github.com/CompVis/stable-diffusion).
 
+![](assets/usage.png)
+
 ### Usage
 
 1. Install requirements
@@ -18,10 +20,6 @@ lightning run app app.py
 3. Transform images
 
 On the Web UI, pick an example image and click on "Submit". The input image can be edited by clicking on the pencil icon.
-
-
-![](assets/usage.png)
-
 
 ### Acknowledgements
 
