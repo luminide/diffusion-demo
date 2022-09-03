@@ -76,7 +76,7 @@ class StableDiffusionEngine:
 
     def _preprocess_image(self, image):
         image = image[:, :, ::-1]
-        h, w = image.shape[1:]
+        h, w, _ = image.shape
         assert h == self.init_image_shape[0] and w == self.init_image_shape[1]
         # normalize
         image = image.astype(np.float32) / 255.0
